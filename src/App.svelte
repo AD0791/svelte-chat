@@ -4,7 +4,7 @@
   import "firebase/firestore";
   import "firebase/auth";
   import AuthForm from "./components/AuthForm.svelte";
-
+  import Chats from "./components/Chats.svelte";
   const firebaseConfig = {
     apiKey: "AIzaSyBEEBzUQlTN7DyvlBt6Y6XU4IU4L503oy0",
     authDomain: "svelte-chat-487fe.firebaseapp.com",
@@ -18,10 +18,20 @@
   firebase.initializeApp(firebaseConfig);
 </script>
 
-<main class="container section">
+<style>
+  .app {
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    max-height: 100vh;
+  }
+</style>
+
+<main class="container section app">
   <FirebaseApp {firebase}>
     <User let:user let:auth>
-      Hello {user.uid}
+      <Chats {user} />
+
       <button class="button is-fullwidth" on:click={() => auth.signOut()}>Leave
         Chat</button>
 
