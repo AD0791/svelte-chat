@@ -4,7 +4,7 @@
   import "firebase/firestore";
   import "firebase/auth";
   import AuthForm from "./components/AuthForm.svelte";
-  import { userInfo } from "os";
+
   const firebaseConfig = {
     apiKey: "AIzaSyBEEBzUQlTN7DyvlBt6Y6XU4IU4L503oy0",
     authDomain: "svelte-chat-487fe.firebaseapp.com",
@@ -22,6 +22,9 @@
   <FirebaseApp {firebase}>
     <User let:user let:auth>
       Hello {user.uid}
+      <button class="button is-fullwidth" on:click={() => auth.signOut()}>Leave
+        Chat</button>
+
       <div slot="signed-out">
         <AuthForm {auth} />
       </div>
